@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -8,7 +9,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
   repeatPass:string='none';
-          constructor(){}
+  displayMsg:string='';
+  isAccountCreated:boolean=false;
+          constructor(private authService:AuthService){}
           ngOnInit(): void {
             
           }
@@ -41,7 +44,30 @@ export class RegisterComponent implements OnInit {
           registerSubmitted(){
             if(this.PWD.value===this.RPWD.value){
               console.log(this.registerForm.valid);
-              this.repeatPass='none';
+              this.repeatPass='none'
+
+              this.authService.registerUser([
+                this.registerForm.value.firstname as string,
+                this.registerForm.value.lastname as string,
+                this.registerForm.value.email as string,
+                this.registerForm.value.mobile as string,
+                this.registerForm.value.gender as string,
+                this.registerForm.value.pwd as string
+              ]).subscribe(res=>{
+                if(res=='Success'){
+                 this.displayMsg="Account Created Successfully";
+                 this.isAccountCreated=true;
+                 console.log(res);
+                }
+                else if(res==="AlreadyExist"){
+                  this.displayMsg="Account Already Exist.Try another Email";
+                  this.isAccountCreated=false;
+                }else{
+                  this.displayMsg="Something went wrong";
+                  this.isAccountCreated=false;
+                  console.log(res);
+                }
+              });
             }
             else{
               this.repeatPass='inline'
