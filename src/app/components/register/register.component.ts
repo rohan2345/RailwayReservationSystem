@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
               gender: new FormControl("",[Validators.required]),
               pwd: new FormControl("",
               [Validators.required,
-                Validators.minLength(8),
+                Validators.minLength(6),
                 Validators.maxLength(15)]),
               rpwd: new FormControl("")
           });

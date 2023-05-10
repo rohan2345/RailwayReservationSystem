@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -8,7 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private loginAuth:AuthService){}
+  
+  constructor(private loginAuth:AuthService,private router:Router){}
   ngOnInit():void{
 
   }
@@ -32,9 +35,13 @@ export class LoginComponent {
         alert("Login Unsuccessful");
        }else{
         this.isUserValid=true;
-        alert("Login Successful");
+        this.loginAuth.setToken(res);
+        this.router.navigateByUrl('home');
        }
     });
+  }
+  setToken(token:string){
+    localStorage.setItem("access_token",token);
   }
 
   get Email():FormControl{
