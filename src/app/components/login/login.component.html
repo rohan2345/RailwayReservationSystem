@@ -1,14 +1,18 @@
-<form class="border p-3 rounded-3" [formGroup]="loginForm" (ngSubmit)="loginSubmited()">
+<div *ngIf="displayMsg" class="alert" [ngClass]="{'alert-success': isLogin, 'alert-danger': !isLogin}">
+  <p class="text-center fs-3">{{displayMsg}}</p>
+</div>
+<div class="bg">
+<div class="content">
+<form class="border p-5 rounded-3 bg-light" [formGroup]="loginForm" (ngSubmit)="loginSubmited()">
      <div class="row g-0">
-        <div class="col text-center p-2 mb-3 bg-light">
-              <span class="fs-3">Login</span>
+        <div class="col text-center p-2 mb-3 bg-info">
+              <span class="fs-3 "><b>Login</b></span>
         </div>
      </div>
      <div class="row">
         <div class="col mb-3">
-            <label for="email" class="form-label">Email Address</label>
-            <input type="email" class="form-control" id="email"
-            formControlName="email">
+            <label for="email" class="form-label"><b>Email Address</b></label>
+            <input type="email" class="form-control" id="email" formControlName="email">
             <div class="form-text text-danger" *ngIf="Email.errors?.['required'] && (Email.dirty || Email.touched)">
                 Email is required
             </div>
@@ -19,7 +23,7 @@
      </div>
      <div class="row">
         <div class="col mb-3">
-            <label for="pwd" class="form-label">Password</label>
+            <label for="pwd" class="form-label"><b>Password</b></label>
             <input type="password" class="form-control" id="pwd"
             formControlName="pwd">
             <div class="form-text text-danger" *ngIf="PWD.errors?.['required'] && (PWD.dirty || PWD.touched)">
@@ -37,6 +41,59 @@
             </div>
         </div>
      </div>
-     <p class="text-center text-muted mt-5 mb-0">Don't have an account? <a routerLink="/register"
-        class="fw-bold text-body"><u>Register here</u></a></p>
+     <p class="text-center text-muted mt-3 mb-0">Don't have an account? <a routerLink="/register"
+        class="fw-bold text-body"><u class="text-primary">Register here</u></a></p>
 </form>
+</div>
+</div>
+<!-- <div class="content">
+  <form class="border p-5 rounded-3 bg-light" [formGroup]="loginForm" (ngSubmit)="loginSubmited()">
+    <div class="row g-0">
+      <div class="col text-center p-2 mb-3 bg-info">
+        <span class="fs-3 "><b>Login</b></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col mb-3">
+        <label for="email" class="form-label"><b>Email Address</b></label>
+        <input type="email" class="form-control" id="email" formControlName="email">
+        <div class="form-text text-danger" *ngIf="Email.errors?.['required'] && (Email.dirty || Email.touched)">
+          Email is required
+        </div>
+        <div class="form-text text-danger" *ngIf="Email.errors?.['email'] && (Email.dirty || Email.touched)">
+          Email is invalid
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col mb-3">
+        <label for="pwd" class="form-label"><b>Password</b></label>
+        <input type="password" class="form-control" id="pwd" formControlName="pwd">
+        <div class="form-text text-danger" *ngIf="PWD.errors?.['required'] && (PWD.dirty || PWD.touched)">
+          Password is required
+        </div>
+        <div class="form-text text-danger" *ngIf="(PWD.errors?.['minlength'] || PWD.errors?.['maxlength']) && (PWD.dirty || PWD.touched)">
+          Password should be between 6 to 15 characters long.
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col mb-3">
+        <label for="role" class="form-label"><b>Login As</b></label>
+        <select id="role" class="form-control" [(ngModel)]="selectedRole">
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 offset-3">
+        <div class="d-grid">
+          <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Login</button>
+        </div>
+      </div>
+    </div>
+    <p class="text-center text-muted mt-3 mb-0">Don't have an account? <a routerLink="/register"
+        class="fw-bold text-body"><u class="text-primary">Register here</u></a></p>
+  </form>
+</div> -->

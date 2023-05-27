@@ -1,2 +1,76 @@
-<p>home works!</p>
-<button class="btn btn-primary" (click)="logOut()">Log Out</button>
+
+<div class="bg">
+  <div class="row">
+    <div class="col-md-5 pt-5">
+      <div class="content">
+        <form autocomplete="off" [formGroup]="trainForm" class="border p-5 pb-3 rounded-3 bg-light">
+          <div class="col text-center p-2 mb-3 rounded-3  bg-info">
+            <span class="fs-3" style="color:white">Search Train</span>
+          </div>
+
+          <div class="form-label">
+            <label  for="source">From</label>
+            <input type="text" class="form-control" formControlName="source" id="source"placeholder="Enter origin" [(ngModel)]="displayTrains.source">
+            <div class="form-text text-danger" *ngIf="Source.errors?.['required'] && (Source.dirty || Source.touched)">
+               Source is required
+            </div>
+          </div>
+
+          <div class="form-label">
+            <label for="toInput">To</label>
+            <input type="text" class="form-control" formControlName="destination" id="toInput" name="to" placeholder="Enter destination" [(ngModel)]="displayTrains.destination">
+            <div class="form-text text-danger" *ngIf="Destination.errors?.['required'] && (Destination.dirty || Destination.touched)">
+              Destination is required
+           </div>
+          </div>
+
+          <!-- <div class="form-group">
+            <label for="dateInput">Date</label>
+            <input type="date" class="form-control" id="dateInput" name="date" [(ngModel)]="displayTrains.departureTime">
+          </div> -->
+
+          <button type="submit" class="btn btn-primary mt-2"  (click)="onSearch()">Search</button>
+          <!-- [disabled]="trainForm.invalid" -->
+        </form>
+      </div>
+    </div>
+
+    <div class="col-md-7 m search-container">
+      <div class="train-list border rounded-3 bg-light n" *ngIf="isSearched">
+        <div class="col text-center mb-3 rounded-3 bg-success">
+          <span class="fs-3" style="color:white"><b>Available Trains</b></span>
+        </div>
+        <div class="table-responsive o">
+          <table class="table table-bordered">
+            <thead class="bg-info text-white ">
+              <tr>
+                <th>Train Name</th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>Departure Time</th>
+                <th>Arrival Time</th>
+                <th>Fare</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let train of filteredTrains ? filteredTrains : trains">
+                <td>{{ train.trainName }}</td>
+                <td>{{ train.source }}</td>
+                <td>{{ train.destination }}</td>
+                <td>{{ train.departureTime | date:'shortTime' }}</td>
+                <td>{{ train.arrivalTime | date:'shortTime' }}</td>
+                <td>{{ train.fare }}</td>
+                <td>
+                  <a href="#" class="btn btn-primary f">Book</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

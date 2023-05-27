@@ -1,3 +1,30 @@
 form{
-    width: 500px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
+    /* background-color: antiquewhite; */
+    width: 60%;
+}
+.content{
+  padding-top: 2%;
+  padding-left: 27%;
+    margin-top: 6%;
+    margin-left: 5%;
+    height:100vh;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    max-width: 1200px;
+    right: 0;
+}
+@media screen and (max-width:480px) {
+    form{
+        width: 95%;
+    }
+}
+.bg{
+  color: #000;
+  overflow-x: hidden;
+  height: 90%;
+  background-image: url("https://free4kwallpapers.com/uploads/wallpaper/bnsf-train-along-the-flathead-river-wallpaper-1024x768-wallpaper.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
 }

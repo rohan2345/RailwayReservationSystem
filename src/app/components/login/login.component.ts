@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
@@ -10,8 +11,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  
-  constructor(private loginAuth:AuthService,private router:Router){}
+
+  constructor(private loginAuth:AuthService,private router:Router,private snackbar:MatSnackBar){}
   ngOnInit():void{
 
   }
@@ -23,9 +24,9 @@ export class LoginComponent {
       Validators.maxLength(15),
     ]),
   });
-
+  displayMsg:string='';
   isUserValid:boolean=false;
-
+  isLogin:boolean=false;
   loginSubmited(){
     this.loginAuth
     .loginUser([this.loginForm.value.email as string,this.loginForm.value.pwd as string])
@@ -34,9 +35,16 @@ export class LoginComponent {
         this.isUserValid=false;
         alert("Login Unsuccessful");
        }else{
+        this.isLogin=true;
+        this.displayMsg="Login Successful."
         this.isUserValid=true;
         this.loginAuth.setToken(res);
-        this.router.navigateByUrl('home');
+        this.snackbar.open('Logged in successfully',undefined,{
+          duration:1000,
+          horizontalPosition:'right',
+          verticalPosition:'top'
+        });
+        this.router.navigateByUrl('/home');
        }
     });
   }
@@ -51,3 +59,4 @@ export class LoginComponent {
     return this.loginForm.get('pwd') as FormControl;
   }
 }
+

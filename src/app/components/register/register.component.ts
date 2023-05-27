@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,9 +13,9 @@ export class RegisterComponent implements OnInit {
   repeatPass:string='none';
   displayMsg:string='';
   isAccountCreated:boolean=false;
-          constructor(private authService:AuthService){}
+          constructor(private authService:AuthService,private router:Router,private snackbar:MatSnackBar){}
           ngOnInit(): void {
-            
+
           }
           registerForm=new FormGroup({
               firstname: new FormControl("",
@@ -55,11 +57,19 @@ export class RegisterComponent implements OnInit {
                 this.registerForm.value.pwd as string
               ]).subscribe(res=>{
                 if(res=='Success'){
-                 this.displayMsg="Account Created Successfully";
+                 this.displayMsg="Account successfully created. Redirecting to login page...";
+                 this.snackbar.open('Account successfully created. Redirecting to login page...',undefined,{
+                  duration:2000,
+                  horizontalPosition:'right',
+                  verticalPosition:'top'
+                });
                  this.isAccountCreated=true;
                  console.log(res);
+                 setTimeout(() => {
+                  this.router.navigate(['/login']);
+                }, 1000);
                 }
-                else if(res==="AlreadyExist"){
+                else if(res==="Already Exist"){
                   this.displayMsg="Account Already Exist.Try another Email";
                   this.isAccountCreated=false;
                 }else{

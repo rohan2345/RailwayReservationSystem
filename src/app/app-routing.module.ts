@@ -5,26 +5,63 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { AuthGuard } from './services/auth.guard';
+import { AdminNavbarComponent } from './components/admin-navbar/admin-navbar.component';
+import { UsersComponent } from './components/users/users.component';
+import { ViewUserComponent } from './components/users/view-user/view-user.component';
+import { TrainComponent } from './components/trains/train/train.component';
+import { ViewTrainComponent } from './components/trains/view-train/view-train.component';
 
 const routes: Routes = [
+  {
+    path:'',
+    redirectTo:'home',
+     pathMatch:'full'
+  },
 {
   path:'login',
   component:LoginComponent
 },
 {
+path:'admin',
+component:AdminNavbarComponent,
+canActivate:[AuthGuard]
+},
+{
+path:'user',
+component:UsersComponent
+},{
+path:'user/user/:id',
+component:ViewUserComponent
+},
+{
+path:'train/train/:id',
+component:ViewTrainComponent
+},
+{
+  path:'train/add',
+  component:ViewTrainComponent
+  },
+{
   path:'register',
   component:RegisterComponent
 },
+// {
+//   path:'',
+//   redirectTo:'login',
+//   pathMatch:'full'
+// },
 {
   path:'',
-  redirectTo:'login',
-  pathMatch:'full'
+  component:HomeComponent,
+},
+{
+  path:'train',
+  component:TrainComponent,
 },
 {
 
   path:'home',
   component:HomeComponent,
-  canActivate:[AuthGuard]
 },
 {
   path:'**',

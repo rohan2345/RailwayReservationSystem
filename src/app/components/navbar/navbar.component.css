@@ -1,0 +1,32 @@
+.navbar {
+  padding-bottom: 0;
+}
+.navbar-brand{
+font-size: 50px;
+font-style: oblique;
+}
+.dropdown-menu-end {
+  left: auto !important;
+  right: 0;
+}
+.c{
+  font-size: 20px;
+  font-style: italic;
+  font-weight: bold;
+}
+.name{
+font-size: 22px;
+font-style: italic;
+font-weight: lighter;
+}
+/* .dropdown-toggle::after {
+  display: none;
+} */
+.d{
+  width: 100%;
+}
+
+
+
+
+

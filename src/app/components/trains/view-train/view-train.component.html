@@ -1,0 +1,97 @@
+<div class="page-header">
+  <div class="container">
+   <h2>{{header}}</h2>
+  </div>
+</div>
+<div class="container">
+  <div class="row top-row">
+    <div class="col-xs-12  d-flex justify-content-end">
+      <a routerLink="/train" color="primary" mat-raised-button>
+        <mat-icon>chevron_left</mat-icon>
+        Go Back
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-8">
+      <form #userDetailsForm="ngForm">
+        <div class="row">
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline" style="width: 100%;">
+              <mat-label>Train Name</mat-label>
+              <input type="text" matInput [(ngModel)]="train.trainName" name="trainName">
+            </mat-form-field>
+          </div>
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline" style="width: 100%;">
+              <mat-label>Fare</mat-label>
+              <input type="text" matInput [(ngModel)]="train.fare" name="fare">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline" style="width: 100%;">
+              <mat-label>Source</mat-label>
+              <input type="text" matInput [(ngModel)]="train.source" name="source">
+            </mat-form-field>
+          </div>
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline" style="width: 100%;">
+              <mat-label>Destination</mat-label>
+              <input type="text" matInput [(ngModel)]="train.destination" name="destination">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline" style="width: 100%;">
+              <mat-label>Total Seats</mat-label>
+              <input type="text" matInput [(ngModel)]="train.totalSeats" name="totalSeats">
+            </mat-form-field>
+          </div>
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline" style="width: 100%;">
+              <mat-label>Available Seats</mat-label>
+              <input type="number" matInput [(ngModel)]="train.availableSeats" name="availableSeats">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline" style="width: 100%;">
+              <mat-label>Arrival Time</mat-label>
+              <input type="text" matInput [(ngModel)]="train.arrivalTime"name="arrivalTime">
+            </mat-form-field>
+          </div>
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline" style="width: 100%;">
+              <mat-label>Departure Time</mat-label>
+              <input type="text" matInput [(ngModel)]="train.departureTime" name="departureTime">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="row justify-content-between" *ngIf="!isNewTrain">
+              <div class="col-xs-6">
+                <button mat-raised-button color="primary" (click)="onUpdate()">Save</button>
+              </div>
+              <div class="col-xs-6 d-flex justify-content-end">
+                <button mat-raised-button color="warn" (click)="onDelete()">Delete</button>
+              </div>
+            </div>
+            <div class="row justify-content-between"  *ngIf="isNewTrain">
+              <div class="col-xs-6">
+                <button mat-raised-button color="primary" (click)="onAdd()">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-xs-2">
+
+    </div>
+  </div>
+</div>
