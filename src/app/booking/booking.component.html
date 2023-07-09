@@ -1,0 +1,126 @@
+   <div class="row2 rounded-3 " >
+    <div class="passenger-form border rounded-3 p-3 bg-light"  >
+      <mat-card>
+        <div class="title bg-dark rounded p-3 text-center">
+          <h1>Passenger Details</h1>
+          <a class="close-icon" (click)="CancelBooking()"><mat-icon>close</mat-icon></a>
+        </div>
+        <form
+          class="example-form   p-5"
+          [formGroup]="AddPassengerForm"
+          (ngSubmit)="AddPassenger()"
+        >
+          <div class="input-group rounded-3 p-2">
+            <mat-form-field class="input-field">
+              <mat-label>First Name</mat-label>
+              <input matInput type="text" formControlName="firstName" />
+            </mat-form-field>
+            <mat-form-field class="input-field">
+              <mat-label>Last Name</mat-label>
+              <input matInput type="text" formControlName="lastName" />
+            </mat-form-field>
+          </div>
+          <div class="input-group">
+            <mat-form-field class="input-field">
+              <mat-label>Age</mat-label>
+              <input matInput type="number" formControlName="age" />
+            </mat-form-field>
+            <mat-form-field class="input-field">
+              <mat-label>Gender</mat-label>
+              <input matInput type="text" formControlName="gender" />
+            </mat-form-field>
+          </div>
+          <div class="input-group">
+            <mat-form-field class="input-field">
+              <mat-label>Phone number</mat-label>
+              <input matInput type="tel" formControlName="phoneNumber" />
+            </mat-form-field>
+          </div>
+          <div class="submit-container">
+            <button mat-raised-button color="primary" class="passenger-submit">
+              <mat-hint>Add Passenger</mat-hint>
+            </button>
+          </div>
+        </form>
+      </mat-card>
+    </div>
+
+
+  <div  *ngIf="passengers.length >= 1">
+    <div class="passenger-details" >
+      <h2>Passenger Details</h2>
+      <div *ngFor="let passenger of passengers" class="passenger-item">
+      <mat-card>
+        <a class="close-icon" (click)="cancelPassenger(passenger.passengerId)">
+          <mat-icon>close</mat-icon>
+        </a>
+        <mat-card-header>
+          <mat-card-title class="passenger-name">{{ passenger.firstName }} {{ passenger.lastName }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="passenger-info">
+          <div class="info-item">Age: {{ passenger.age }}</div>
+            <div class="info-item">Gender: {{ passenger.gender }}</div>
+            <div class="info-item">Phone Number: {{ passenger.phoneNumber }}</div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div *ngIf="passengers.length > 0">
+      <button mat-raised-button color="primary" (click)="payments()">
+        Pay {{ totalAmount | currency : "₹" }}
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="fare-detail-card" id="accordionExample" *ngIf="passengers.length >= 1">
+    <div class="section-heading">
+      <i class="fa fa-pricebreakup mr-2"></i>
+      Fare Breakup
+    </div>
+      <div class="pb-0">
+        <p>Include all taxes</p>
+        <label>Passengers</label>
+      </div>
+      <div class="py-0 fare-detail-head">
+        <strong >Adult: {{passengers.length}}</strong>
+      </div>
+      <div class="fare-chart pt-0">
+        <div >
+          <strong >Base Fare</strong>
+          <span>{{amount | currency : "₹" }}</span>
+        </div>
+        <div>
+          <label (click)="isTaxChartCollapsed = !isTaxChartCollapsed" [attr.aria-expanded]="!isTaxChartCollapsed" [class.collapsed]="isTaxChartCollapsed">Taxes &amp; Fees</label>
+          <span>₹ {{totalTax}}</span>
+          <div class="taxes-chart-wrap card" [class.collapse]="isTaxChartCollapsed" id="collapsetax" [attr.aria-hidden]="isTaxChartCollapsed" >
+            <div class="taxes-chart">
+              <div>
+                <span>Airport Dev. Fee</span>
+                <span>₹ 0.00</span>
+              </div>
+              <div>
+                <span>Fuel Surcharge</span>
+                <span>₹ 0.00</span>
+              </div>
+              <div>
+                <span>GST</span>
+                <span>{{gst | currency : "₹" }}</span>
+              </div>
+              <div>
+                <span>Other</span>
+                <span>{{tax | currency : "₹" }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <strong>Total Payable</strong>
+          <span id="tl">{{totalAmount | currency : "₹" }}</span>
+        </div>
+      </div>
+    </div>
+
+  </div>

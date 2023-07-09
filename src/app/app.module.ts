@@ -61,6 +61,11 @@ import { CommonModule } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import { TrainComponent } from './components/trains/train/train.component';
 import { ViewTrainComponent } from './components/trains/view-train/view-train.component';
+import { PassengerComponent } from './components/passenger/passenger.component';
+import { BookingComponent } from './booking/booking.component';
+import { BookinsComponent } from './bookins/bookins.component';
+import { ViewBookinsComponent } from './bookins/view-bookins/view-bookins.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,12 +74,17 @@ import { ViewTrainComponent } from './components/trains/view-train/view-train.co
     HomeComponent,
     PagenotfoundComponent,
     NavbarComponent,
-    FooterComponent,
     AdminNavbarComponent,
+    FooterComponent,
     UsersComponent,
     ViewUserComponent,
     TrainComponent,
-    ViewTrainComponent
+    ViewTrainComponent,
+    PassengerComponent,
+    BookingComponent,
+    BookinsComponent,
+    ViewBookinsComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -119,11 +129,13 @@ import { ViewTrainComponent } from './components/trains/view-train/view-train.co
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
-    CommonModule
+    CommonModule,
+    MatToolbarModule,
+    MatIconModule,
   ],
-//   schemas:[
-// CUSTOM_ELEMENTS_SCHEMA
-//   ],
+  schemas:[
+CUSTOM_ELEMENTS_SCHEMA
+  ],
   providers: [
     AuthService,
     DatePipe

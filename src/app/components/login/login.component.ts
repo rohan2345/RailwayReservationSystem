@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -27,6 +28,7 @@ export class LoginComponent {
   displayMsg:string='';
   isUserValid:boolean=false;
   isLogin:boolean=false;
+
   loginSubmited(){
     this.loginAuth
     .loginUser([this.loginForm.value.email as string,this.loginForm.value.pwd as string])
@@ -35,16 +37,28 @@ export class LoginComponent {
         this.isUserValid=false;
         alert("Login Unsuccessful");
        }else{
+        console.log(res+"response coming");
         this.isLogin=true;
         this.displayMsg="Login Successful."
         this.isUserValid=true;
         this.loginAuth.setToken(res);
+        const responseObj = JSON.parse(res);
+        const userId = responseObj.userId;
+        sessionStorage.setItem('userId', userId.toString());
         this.snackbar.open('Logged in successfully',undefined,{
-          duration:1000,
+          duration:2000,
           horizontalPosition:'right',
           verticalPosition:'top'
         });
-        this.router.navigateByUrl('/home');
+        // this.router.navigateByUrl('/home');
+        const currentUser = this.loginAuth.currentUser.getValue();
+        if (currentUser && currentUser.email === 'admin234@gmail.com') {
+          this.loginAuth.isAdmin = true;
+          this.router.navigateByUrl('/admin');
+        } else {
+          this.loginAuth.isAdmin = false;
+          this.router.navigateByUrl('/home');
+        }
        }
     });
   }

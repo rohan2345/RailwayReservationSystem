@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit{
     this.authService.removeToken();
     this.isLoggedIn=false;
     this.snackbar.open('Logged out successfully',undefined,{
-      duration:1000,
+      duration:2000,
       horizontalPosition:'right',
       verticalPosition:'top'
     });

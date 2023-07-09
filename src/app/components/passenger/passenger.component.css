@@ -1,0 +1,60 @@
+.page-header{
+  background: #f1f1f1;
+}
+.page-header h1{
+  padding: 16px 0;
+  margin: 0;
+}
+.top-row{
+  padding: 1em 0;
+}
+div.mat-form-field{
+  width: 100%;
+}
+.m{
+  background-color: aqua;
+  margin-left: 7.5%;
+  font-size: 25px;
+  font-weight: 600;
+  font-style: inherit;
+  text-overflow: ellipsis;
+}
+.g{
+  height: 100%;
+  width: 100%;
+  background-color: aqua;
+}
+.container{
+  padding-bottom: 2%;
+}
+.bg{
+  color: #000;
+  overflow-x: hidden;
+  height: 100%;
+  background-image: url("https://c1.wallpaperflare.com/preview/357/51/799/sky-landscape-railway-indian-railways.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+form{
+    background-color:whitesmoke;
+    width: 70%;
+}
+.content{
+  padding-top: 5%;
+  padding-left: 17%;
+    margin-top: 3%;
+    margin-left: 5%;
+    height:100vh;
+    margin-bottom: 3%;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    max-width: 90%;
+    right: 0;
+}
+@media screen and (max-width:480px) {
+    form{
+        width: 95%;
+    }
+}
+

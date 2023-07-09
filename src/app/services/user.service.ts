@@ -29,7 +29,6 @@ export class UserService {
      userId: ''
    }
      return this.httpClient.put<User>(this.baseServerUrl+ 'User/' +userId,updateUserRequest);
-    //  https://localhost:44315/api/User/1
   }
   deleteUser(userId:string):Observable<User>{
      return this.httpClient.delete<User>(this.baseServerUrl+ 'User/' +userId);

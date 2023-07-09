@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
                  console.log(res);
                  setTimeout(() => {
                   this.router.navigate(['/login']);
-                }, 1000);
+                }, 500);
                 }
                 else if(res==="Already Exist"){
                   this.displayMsg="Account Already Exist.Try another Email";

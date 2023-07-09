@@ -30,7 +30,7 @@ ngOnInit(): void {
     (params)=>{
      this.trainId= params.get('id');
      if(this.trainId){
-     //if the routes contain the 'Add' ->new student functionality else existing
+     //if the routes contain the 'Add' ->new train functionality else existing
 
      if(this.trainId.toLowerCase()==='add'){
       this.isNewTrain=true;

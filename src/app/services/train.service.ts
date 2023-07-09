@@ -34,8 +34,8 @@ export class TrainService {
      //  https://localhost:44315/ https://localhost:44315/Train/UpdateTrain/1007
 
    }
-   deleteTrain(trainId:string):Observable<Train>{
-      return this.http.delete<Train>(this.baseServerUrl+ 'Train/DeleteTrain/' + trainId);
+   deleteTrain(trainId:string){
+      return this.http.delete(this.baseServerUrl+ 'Train/DeleteTrain/' + trainId);
    }
 
    addTrain(trainRequest:Train):Observable<Train>{

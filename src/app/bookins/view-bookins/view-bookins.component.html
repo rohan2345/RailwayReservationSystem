@@ -1,12 +1,12 @@
 <div class="page-header">
   <div class="container">
-   <h2>{{header}}</h2>
+   <h2>View Booking Details</h2>
   </div>
 </div>
 <div class="container">
   <div class="row top-row">
     <div class="col-xs-12  d-flex justify-content-end">
-      <a routerLink="/train" color="primary" mat-raised-button>
+      <a routerLink="/bookins" color="primary" mat-raised-button>
         <mat-icon>chevron_left</mat-icon>
         Go Back
       </a>
@@ -19,13 +19,13 @@
           <div class="col-xs-6">
             <mat-form-field appearance="outline" style="width: 100%;">
               <mat-label>Train Name</mat-label>
-              <input type="text" matInput [(ngModel)]="train.trainName" name="trainName">
+              <input type="text" matInput [(ngModel)]="booking.trainBookingId" name="trainBookingId">
             </mat-form-field>
           </div>
           <div class="col-xs-6">
             <mat-form-field appearance="outline" style="width: 100%;">
               <mat-label>Fare</mat-label>
-              <input type="text" matInput [(ngModel)]="train.fare" name="fare">
+              <input type="text" matInput [(ngModel)]="booking.trainId" name="trainId">
             </mat-form-field>
           </div>
         </div>
@@ -33,47 +33,47 @@
           <div class="col-xs-6">
             <mat-form-field appearance="outline" style="width: 100%;">
               <mat-label>Source</mat-label>
-              <input type="text" matInput [(ngModel)]="train.source" name="source">
+              <input type="text" matInput [(ngModel)]="booking.source" name="source">
             </mat-form-field>
           </div>
           <div class="col-xs-6">
             <mat-form-field appearance="outline" style="width: 100%;">
               <mat-label>Destination</mat-label>
-              <input type="text" matInput [(ngModel)]="train.destination" name="destination">
+              <input type="text" matInput [(ngModel)]="booking.destination" name="destination">
             </mat-form-field>
           </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-xs-6">
             <mat-form-field appearance="outline" style="width: 100%;">
               <mat-label>Total Seats</mat-label>
-              <input type="text" matInput [(ngModel)]="train.totalSeats" name="totalSeats">
+              <input type="text" matInput [(ngModel)]="booking.arrivalTime" name="totalSeats">
             </mat-form-field>
           </div>
           <div class="col-xs-6">
             <mat-form-field appearance="outline" style="width: 100%;">
               <mat-label>Available Seats</mat-label>
-              <input type="number" matInput [(ngModel)]="train.availableSeats" name="availableSeats">
+              <input type="number" matInput [(ngModel)]="booking.departureTime" name="availableSeats">
             </mat-form-field>
           </div>
-        </div>
+        </div> -->
         <div class="row">
           <div class="col-xs-6">
             <mat-form-field appearance="outline" style="width: 100%;">
               <mat-label>Arrival Time</mat-label>
-              <input type="text" matInput [(ngModel)]="train.arrivalTime"name="arrivalTime">
+              <input type="text" matInput [(ngModel)]="booking.arrivalTime"name="arrivalTime">
             </mat-form-field>
           </div>
           <div class="col-xs-6">
             <mat-form-field appearance="outline" style="width: 100%;">
               <mat-label>Departure Time</mat-label>
-              <input type="text" matInput [(ngModel)]="train.departureTime " name="departureTime">
+              <input type="text" matInput [(ngModel)]="booking.departureTime " name="departureTime">
             </mat-form-field>
           </div>
         </div>
         <div class="row">
           <div class="col-xs-12">
-            <div class="row justify-content-between" *ngIf="!isNewTrain">
+            <div class="row justify-content-between">
               <div class="col-xs-6">
                 <button mat-raised-button color="primary" (click)="onUpdate()">Update</button>
               </div>

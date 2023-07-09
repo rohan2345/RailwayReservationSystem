@@ -10,6 +10,10 @@ import { UsersComponent } from './components/users/users.component';
 import { ViewUserComponent } from './components/users/view-user/view-user.component';
 import { TrainComponent } from './components/trains/train/train.component';
 import { ViewTrainComponent } from './components/trains/view-train/view-train.component';
+import { PassengerComponent } from './components/passenger/passenger.component';
+import { BookingComponent } from './booking/booking.component';
+import { BookinsComponent } from './bookins/bookins.component';
+import { ViewBookinsComponent } from './bookins/view-bookins/view-bookins.component';
 
 const routes: Routes = [
   {
@@ -22,14 +26,27 @@ const routes: Routes = [
   component:LoginComponent
 },
 {
+  path:'passenger',
+  component:PassengerComponent
+},
+{
 path:'admin',
 component:AdminNavbarComponent,
 canActivate:[AuthGuard]
 },
 {
+  path:'bookins',
+  component:BookinsComponent
+},
+{
+  path:'bookins/bookins/:id',
+  component:ViewBookinsComponent
+},
+{
 path:'user',
 component:UsersComponent
-},{
+},
+{
 path:'user/user/:id',
 component:ViewUserComponent
 },
@@ -53,6 +70,11 @@ component:ViewTrainComponent
 {
   path:'',
   component:HomeComponent,
+},
+{
+
+  path:'booking',
+  component:BookingComponent
 },
 {
   path:'train',
