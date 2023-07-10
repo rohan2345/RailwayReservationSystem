@@ -1,12 +1,13 @@
-   <div class="row2 rounded-3 " >
-    <div class="passenger-form border rounded-3 p-3 bg-light"  >
+<app-navbar></app-navbar>
+<div class="row2 rounded-3 " >
+    <div class="passenger-form"  >
       <mat-card>
-        <div class="title bg-dark rounded p-3 text-center">
-          <h1>Passenger Details</h1>
-          <a class="close-icon" (click)="CancelBooking()"><mat-icon>close</mat-icon></a>
+        <div class="title   rounded p-3 text-center">
+          <h1 style="color: aqua;">Add passenger details</h1>
+          <a class="close-icon" color="primary" mat-raised-button (click)="CancelBooking()"><mat-icon>chevron_left</mat-icon>Back</a>
         </div>
         <form
-          class="example-form   p-5"
+          class="example-form   p-3"
           [formGroup]="AddPassengerForm"
           (ngSubmit)="AddPassenger()"
         >
@@ -46,13 +47,19 @@
     </div>
 
 
-  <div  *ngIf="passengers.length >= 1">
+  <div  class="p" *ngIf="passengers.length >= 1">
     <div class="passenger-details" >
-      <h2>Passenger Details</h2>
-      <div *ngFor="let passenger of passengers" class="passenger-item">
+      <div class="row g-0">
+        <div class="col text-center rounded-3 p-2 mb-3 bg-info">
+              <span class="fs-3 ">Book Ticket</span>
+        </div>
+     </div>
+     <div class="passenger-wrapper">
+      <div *ngFor="let passenger of passengers"  class="passenger-item">
       <mat-card>
-        <a class="close-icon" (click)="cancelPassenger(passenger.passengerId)">
-          <mat-icon>close</mat-icon>
+        <a class="close-icon" color="warn" mat-raised-button  (click)="cancelPassenger(passenger.passengerId)">
+          Remove
+          <mat-icon>delete</mat-icon>
         </a>
         <mat-card-header>
           <mat-card-title class="passenger-name">{{ passenger.firstName }} {{ passenger.lastName }}</mat-card-title>
@@ -61,21 +68,24 @@
           <div class="info-item">Age: {{ passenger.age }}</div>
             <div class="info-item">Gender: {{ passenger.gender }}</div>
             <div class="info-item">Phone Number: {{ passenger.phoneNumber }}</div>
+            <div class="info-item">Convience Fee: {{convienceFee }}</div>
+            <div class="info-item">Ticket Fare: {{tfare }}</div>
+            <div class="info-item">Total Passengers: {{passengers.length}}</div>
         </mat-card-content>
       </mat-card>
     </div>
+  </div>
     <div *ngIf="passengers.length > 0">
       <button mat-raised-button color="primary" (click)="payments()">
         Pay {{ totalAmount | currency : "₹" }}
         </button>
-
       </div>
     </div>
   </div>
 
 
 
-  <div class="fare-detail-card" id="accordionExample" *ngIf="passengers.length >= 1">
+  <!-- <div class="fare-detail-card" id="accordionExample" *ngIf="passengers.length >= 1">
     <div class="section-heading">
       <i class="fa fa-pricebreakup mr-2"></i>
       Fare Breakup
@@ -94,24 +104,16 @@
         </div>
         <div>
           <label (click)="isTaxChartCollapsed = !isTaxChartCollapsed" [attr.aria-expanded]="!isTaxChartCollapsed" [class.collapsed]="isTaxChartCollapsed">Taxes &amp; Fees</label>
-          <span>₹ {{totalTax}}</span>
+          <span>₹ {{convienceFee}}</span>
           <div class="taxes-chart-wrap card" [class.collapse]="isTaxChartCollapsed" id="collapsetax" [attr.aria-hidden]="isTaxChartCollapsed" >
             <div class="taxes-chart">
               <div>
-                <span>Airport Dev. Fee</span>
-                <span>₹ 0.00</span>
-              </div>
-              <div>
-                <span>Fuel Surcharge</span>
-                <span>₹ 0.00</span>
-              </div>
-              <div>
                 <span>GST</span>
-                <span>{{gst | currency : "₹" }}</span>
+                <span></span>
               </div>
               <div>
                 <span>Other</span>
-                <span>{{tax | currency : "₹" }}</span>
+                <span></span>
               </div>
             </div>
           </div>
@@ -121,6 +123,6 @@
           <span id="tl">{{totalAmount | currency : "₹" }}</span>
         </div>
       </div>
-    </div>
+    </div> -->
 
   </div>

@@ -2,6 +2,7 @@
 <!-- <div class="alert alert-success" role="alert">
     <p class="text-center fs-3" [ngClass]="isAccountCreated? 'text-success pb-1':'text-danger pb-1'">{{displayMsg}}</p>
 </div> -->
+<app-navbar></app-navbar>
 <div *ngIf="displayMsg" class="alert" [ngClass]="{'alert-success': isAccountCreated, 'alert-danger': !isAccountCreated}">
     <p class="text-center fs-3">{{displayMsg}}</p>
 </div>

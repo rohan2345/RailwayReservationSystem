@@ -17,17 +17,11 @@ export class BookingComponent implements OnInit{
 
   isTaxChartCollapsed: boolean = true;
   passengers: Passenger[] = []
-
-  seatselectionOption: boolean = false;
-  passengerAddOption: boolean = false;
-  currentseat: string = '';
-  searchedflight :any;
   bookedtrain:any;
   amount: number = 0;
-  gst!: number;
-  tax!: number;
+  tfare:number= 0;
   totalAmount!: number;
-  totalTax!: number;
+  convienceFee: number=30;
 
   constructor(private authService: AuthService,
     private builder: FormBuilder,
@@ -98,6 +92,7 @@ export class BookingComponent implements OnInit{
   //add passenger
   AddPassenger()
   {
+    debugger
     let bId = this.convertToNumberfromstring(sessionStorage.getItem('bookingId'))
     let uId = this.convertToNumberfromstring(sessionStorage.getItem('userId'))
     if(bId!==null && uId!==null){
@@ -128,6 +123,7 @@ export class BookingComponent implements OnInit{
     alert("All Field required")
   }
     }
+    debugger
     this.calculateAmountOnAdd();
   }
 
@@ -162,7 +158,7 @@ export class BookingComponent implements OnInit{
    //get passenger by id
    getPassengers() {
     debugger
-    let id: number | null = this.convertToNumberfromstring(sessionStorage.getItem('bookingid') );
+    let id: number | null = this.convertToNumberfromstring(sessionStorage.getItem('bookingId') );
     if(id!==null){
     this.passengerService.getPassenger(id).subscribe((res: any) => {
       if (res) {
@@ -177,29 +173,14 @@ export class BookingComponent implements OnInit{
   }
 }
 
-  //add passenger opiton
-  addPassengerOption(seat: string) {
-    debugger
-    this.currentseat = seat;
-    this.passengerAddOption = !this.passengerAddOption;
-  }
-
-  //for button
-  getButtonStyle(seat: string) {
-    debugger
-    if (seat === this.currentseat) {
-      return { 'background-color': 'green', 'color': '#fff' };
-    } else {
-      return {};
-    }
-  }
-
 
   payments() {
+    debugger
     this.router.navigate(['payment', this.totalAmount]);
   }
 
   calculateAmount() {
+    debugger
     for (let i = 0; i < this.passengers.length; i++) {
       this.amount += this.bookedtrain[0].fare;
     }
@@ -207,7 +188,11 @@ export class BookingComponent implements OnInit{
   }
 
   calculateAmountOnAdd() {
+    debugger
+    console.log(this.bookedtrain[0]);
+    debugger
     this.amount += this.bookedtrain[0].fare;
+    this.tfare=this.bookedtrain[0].fare;
     this.TotalAmount();
 
   }
@@ -216,12 +201,12 @@ export class BookingComponent implements OnInit{
     this.TotalAmount();
 
   }
-  TotalAmount(){
-    this.gst = (this.amount*18)/100;
-    this.tax = (this.amount*10)/100;
-    this.totalTax = this.gst+ this.tax
 
-    this.totalAmount = this.totalTax+ this.amount
+  TotalAmount(){
+    debugger
+
+
+    this.totalAmount = this.convienceFee+ this.amount
   }
 }
 

@@ -14,6 +14,8 @@ import { PassengerComponent } from './components/passenger/passenger.component';
 import { BookingComponent } from './booking/booking.component';
 import { BookinsComponent } from './bookins/bookins.component';
 import { ViewBookinsComponent } from './bookins/view-bookins/view-bookins.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { PaymentComponent } from './components/payments/payment/payment.component';
 
 const routes: Routes = [
   {
@@ -46,9 +48,17 @@ canActivate:[AuthGuard]
 path:'user',
 component:UsersComponent
 },
+{path:'about-us',
+component:AboutUsComponent
+},
 {
 path:'user/user/:id',
 component:ViewUserComponent
+},
+{
+  path: 'payment/:amount',
+  component: PaymentComponent,
+  canActivate: [AuthGuard]
 },
 {
 path:'train/train/:id',

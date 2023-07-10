@@ -5,6 +5,7 @@ import { TrainService } from 'src/app/services/train.service';
 import { Train } from 'src/app/models/ui-model/train.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BookingService } from 'src/app/booking.service';
+import { DataService } from 'src/app/data.service';
 
 
 @Component({
@@ -33,7 +34,8 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private trainService: TrainService,
     private builder: FormBuilder,
-    private bookingService:BookingService
+    private bookingService:BookingService,
+    private dataService: DataService
   ) {}
 
   logOut() {
@@ -45,6 +47,7 @@ export class HomeComponent implements OnInit {
     this.trainService.getTrains().subscribe(
       (successResponse: Train[]) => {
         this.trains = successResponse;
+        this.dataService.setData(successResponse);
       },
       (errorResponse) => {
         console.log(errorResponse);
@@ -111,9 +114,10 @@ debugger
     this.AddBookingForm.value.userId= userId;
 
     this.bookingService.addBooking(this.AddBookingForm.value).subscribe((res: any) => {
-
+      debugger
       console.log(res);
       sessionStorage.setItem("bookingId", res.trainBookingId.toString());
+
 debugger
     })
     this.router.navigateByUrl('booking')

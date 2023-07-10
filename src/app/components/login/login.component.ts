@@ -41,10 +41,15 @@ export class LoginComponent {
         this.isLogin=true;
         this.displayMsg="Login Successful."
         this.isUserValid=true;
-        this.loginAuth.setToken(res);
         const responseObj = JSON.parse(res);
+        const token = responseObj.token;
+        this.loginAuth.setToken(token);
         const userId = responseObj.userId;
+        const email = responseObj.email;
+
         sessionStorage.setItem('userId', userId.toString());
+        sessionStorage.setItem('email', email.toString());
+
         this.snackbar.open('Logged in successfully',undefined,{
           duration:2000,
           horizontalPosition:'right',

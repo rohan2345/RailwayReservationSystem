@@ -1,0 +1,66 @@
+<app-navbar></app-navbar>
+<div id="booking" class="booking-container">
+  <div class="booking-detail-card">
+    <div class="section-heading">
+      <i class="fa fa-train mr-2"></i>
+      Train Detail
+    </div>
+    <div class="booking-detail-in booking-detail-in-wrap">
+      <table class="train-detail-table">
+        <tr>
+          <th>Train Name</th>
+          <th>Arrival Time</th>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Departure Time</th>
+        </tr>
+        <tr>
+          <td>{{ bookedTrain.trainName }}</td>
+          <td>{{ bookedTrain.arrivalTime | date: 'HH:mm' }}</td>
+          <td>{{ bookedTrain.source }}</td>
+          <td>{{ bookedTrain.destination }}</td>
+          <td>{{ bookedTrain.departureTime | date:'HH:mm' }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="payment-card">
+    <div class="payment-card-header">
+      <h3 class="payment-card-title">Payment</h3>
+    </div>
+    <div class="payment-card-content">
+      <form [formGroup]="paymentForm" (ngSubmit)="Payment()">
+        <div class="form-field">
+          <label>Card Number</label>
+          <input formControlName="cardNumber">
+        </div>
+
+        <div class="form-field">
+          <label>Expiry Date</label>
+          <input type="date" formControlName="expirationDate">
+        </div>
+
+        <div class="form-field">
+          <label>CVV</label>
+          <input type="number" formControlName="cvv">
+        </div>
+
+        <div class="form-field">
+          <label>Name on Card</label>
+          <input type="text" formControlName="cardName">
+        </div>
+
+        <div class="form-field">
+          <label>Amount</label>
+          <input formControlName="amount" [value]="amount">
+        </div>
+      </form>
+    </div>
+    <div class="payment-card-actions">
+      <button class="payment-button payment-button-primary" (click)="Payment()">Make Payment</button>
+      <button class="payment-button payment-button-warn">Cancel</button>
+    </div>
+  </div>
+</div>
+

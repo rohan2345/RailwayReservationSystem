@@ -65,6 +65,10 @@ import { PassengerComponent } from './components/passenger/passenger.component';
 import { BookingComponent } from './booking/booking.component';
 import { BookinsComponent } from './bookins/bookins.component';
 import { ViewBookinsComponent } from './bookins/view-bookins/view-bookins.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { PaymentComponent } from './components/payments/payment/payment.component';
+
+
 
 @NgModule({
   declarations: [
@@ -84,6 +88,8 @@ import { ViewBookinsComponent } from './bookins/view-bookins/view-bookins.compon
     BookingComponent,
     BookinsComponent,
     ViewBookinsComponent,
+    AboutUsComponent,
+    PaymentComponent,
 
   ],
   imports: [

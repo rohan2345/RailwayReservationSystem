@@ -1,4 +1,4 @@
-
+<app-navbar></app-navbar>
 <div class="bg">
   <div class="row">
     <div class="col-md-5 pt-5">
@@ -24,12 +24,12 @@
            </div>
           </div>
 
-          <!-- <div class="form-group">
+          <div class="form-group">
             <label for="dateInput">Date</label>
             <input type="date" class="form-control" id="dateInput" name="date" [(ngModel)]="displayTrains.departureTime">
-          </div> -->
+          </div>
 
-          <button type="submit" class="btn btn-primary mt-2"  (click)="onSearch()">Search</button>
+          <button [disabled]="trainForm.invalid" type="submit" class="btn btn-primary mt-2"  (click)="onSearch()">Search</button>
           <!-- [disabled]="trainForm.invalid" -->
         </form>
       </div>
